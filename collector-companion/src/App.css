@@ -78,11 +78,13 @@ button:hover {
   font-weight: 500;
   color: #8e8dbf;
   margin-bottom: 15px;
+
 }
 
 .dashboard ul {
   list-style: none;
   padding: 0;
+  color: #8e8dbf;
 }
 
 .dashboard li {
