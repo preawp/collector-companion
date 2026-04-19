@@ -9,16 +9,31 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
+function getLastChange(item) {
+  if (item.history.length < 2) return 0
+  const last = item.history[item.history.length - 1].price
+  const prev = item.history[item.history.length - 2].price
+  return last - prev
+}
+
+function getPercentChange(item) {
+  if (item.history.length < 2) return 0
+  const first = item.history[0].price
+  const last = item.history[item.history.length - 1].price
+  if (first === 0) return 0
+  return ((last - first) / first) * 100
+}
+
 const starterItems = [
   {
     id: crypto.randomUUID(),
     name: 'Pokémon Base Set Charizard',
     currentPrice: 320,
     history: [
-      { date: 'Apr 01', price: 280 },
-      { date: 'Apr 03', price: 295 },
-      { date: 'Apr 05', price: 310 },
-      { date: 'Apr 08', price: 320 },
+      { date: 'Apr 01, 10:30 AM', price: 280 },
+      { date: 'Apr 03, 11:15 AM', price: 295 },
+      { date: 'Apr 05, 1:10 PM', price: 310 },
+      { date: 'Apr 08, 2:45 PM', price: 320 },
     ],
   },
   {
@@ -26,10 +41,10 @@ const starterItems = [
     name: 'Hot Wheels Redline',
     currentPrice: 95,
     history: [
-      { date: 'Apr 01', price: 88 },
-      { date: 'Apr 03', price: 90 },
-      { date: 'Apr 06', price: 92 },
-      { date: 'Apr 08', price: 95 },
+      { date: 'Apr 01, 9:40 AM', price: 88 },
+      { date: 'Apr 03, 12:00 PM', price: 90 },
+      { date: 'Apr 06, 3:20 PM', price: 92 },
+      { date: 'Apr 08, 4:30 PM', price: 95 },
     ],
   },
   {
@@ -37,10 +52,10 @@ const starterItems = [
     name: 'Funko Pop Spider-Man',
     currentPrice: 42,
     history: [
-      { date: 'Apr 01', price: 36 },
-      { date: 'Apr 03', price: 39 },
-      { date: 'Apr 06', price: 41 },
-      { date: 'Apr 08', price: 42 },
+      { date: 'Apr 01, 8:15 AM', price: 36 },
+      { date: 'Apr 03, 10:50 AM', price: 39 },
+      { date: 'Apr 06, 2:25 PM', price: 41 },
+      { date: 'Apr 08, 5:05 PM', price: 42 },
     ],
   },
 ]
@@ -76,6 +91,16 @@ function App() {
     return selectedItem ? selectedItem.history : []
   }, [selectedItem])
 
+  const averagePrice =
+    items.length > 0
+      ? items.reduce((sum, item) => sum + item.currentPrice, 0) / items.length
+      : 0
+
+  const highestItem =
+    items.length > 0
+      ? [...items].sort((a, b) => b.currentPrice - a.currentPrice)[0]
+      : null
+
   const addItem = () => {
     const trimmedName = itemName.trim()
     const price = Number(itemPrice)
@@ -85,9 +110,11 @@ function App() {
       return
     }
 
-    const today = new Date().toLocaleDateString([], {
+    const today = new Date().toLocaleString([], {
       month: 'short',
       day: '2-digit',
+      hour: 'numeric',
+      minute: '2-digit',
     })
 
     const newItem = {
@@ -113,9 +140,11 @@ function App() {
       return
     }
 
-    const today = new Date().toLocaleDateString([], {
+    const today = new Date().toLocaleString([], {
       month: 'short',
       day: '2-digit',
+      hour: 'numeric',
+      minute: '2-digit',
     })
 
     setItems((prev) =>
@@ -137,10 +166,26 @@ function App() {
 
   return (
     <div className="container">
-      <header>
-        <h1>Collectible Companion</h1>
-        <p>Track collectible prices and visualize real price changes over time</p>
-      </header>
+      <header className="hero">
+      <img src="/logo.png" alt="Collectible Companion" className="logo" />
+      <p>Track collectible prices and visualize trends over time</p>
+    </header>
+      <section className="summary-grid">
+        <div className="summary-card">
+          <h3>Total Items</h3>
+          <p>{items.length}</p>
+        </div>
+
+        <div className="summary-card">
+          <h3>Average Price</h3>
+          <p>${averagePrice.toFixed(2)}</p>
+        </div>
+
+        <div className="summary-card">
+          <h3>Highest Item</h3>
+          <p>{highestItem ? highestItem.name : 'N/A'}</p>
+        </div>
+      </section>
 
       <section className="add-item">
         <input
@@ -184,8 +229,24 @@ function App() {
                 >
                   <div className="item-text">
                     <strong>{item.name}</strong>
+
                     <span>${item.currentPrice.toFixed(2)}</span>
+
+                    <small>
+                      Last updated: {item.history[item.history.length - 1]?.date}
+                    </small>
+
+                    <small>
+                      Change: {getLastChange(item) >= 0 ? '↑ +' : '↓ '}
+                      {Math.abs(getLastChange(item)).toFixed(2)}
+                    </small>
+
+                    <small>
+                      Total: {getPercentChange(item) >= 0 ? '↑ +' : '↓ '}
+                      {Math.abs(getPercentChange(item)).toFixed(1)}%
+                    </small>
                   </div>
+
                   <small>{item.history.length} price points</small>
                 </div>
 
