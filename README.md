@@ -13,6 +13,10 @@ Collectible Companion is a front-end prototype that allows users to:
 
 The goal is to observe value patterns and highlight fluctuations such as spikes or drops.
 
+## Prototype for usability test
+
+https://jazzy-kataifi-54f3ec.netlify.app/
+
 ## Tech Stack
 
 - React (Vite)
@@ -27,3 +31,4 @@ git clone https://github.com/YOUR_USERNAME/collectible-companion.git
 cd collectible-companion
 npm install
 npm run dev
+
