@@ -40,12 +40,15 @@ const starterItems = [
   },
   {
     id: crypto.randomUUID(),
-    name: 'Funko Pop! Pride and Prejudice Mr. Darcy',
-    currentPrice: 48,
+    name: 'Anastasia Music Box by The San Francisco Music Box Company',
+    currentPrice: 850,
     history: [
-      { date: 'Feb 2026', price: 12 },
-      { date: 'Mar 2026', price: 12 },
-      { date: 'Apr 2026', price: 15 },
+      { date: 'Jan 2023', price: 420 },
+      { date: 'Jul 2023', price: 500 },
+      { date: 'Feb 2024', price: 610 },
+      { date: 'Oct 2024', price: 720 },
+      { date: 'Jun 2025', price: 790 },
+      { date: 'Apr 2026', price: 850 },
     ],
   },
   {
@@ -60,19 +63,17 @@ const starterItems = [
       { date: 'Apr 2026', price: 200 },
     ],
   },
-  {
+    {
     id: crypto.randomUUID(),
-    name: 'Anastasia Music Box by The San Francisco Music Box Company',
-    currentPrice: 850,
+    name: 'Funko Pop! Pride and Prejudice Mr. Darcy',
+    currentPrice: 48,
     history: [
-      { date: 'Jan 2023', price: 420 },
-      { date: 'Jul 2023', price: 500 },
-      { date: 'Feb 2024', price: 610 },
-      { date: 'Oct 2024', price: 720 },
-      { date: 'Jun 2025', price: 790 },
-      { date: 'Apr 2026', price: 850 },
+      { date: 'Feb 2026', price: 12 },
+      { date: 'Mar 2026', price: 12 },
+      { date: 'Apr 2026', price: 15 },
     ],
-  },
+  }
+  
 ]
 
 function App() {
@@ -222,7 +223,7 @@ function App() {
     <div className="container">
       <header className="hero">
         <img src="/logo.png" alt="Collectible Companion" className="logo" />
-        <p>Track collectible prices and visualize trends over time</p>
+        <p>Track collectible prices and visualize value trends over time</p>
       </header>
 
       <section className="summary-grid">
