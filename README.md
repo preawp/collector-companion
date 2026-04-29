@@ -13,7 +13,10 @@ Collectible Companion is a front-end prototype that allows users to:
 
 The goal is to observe value patterns and highlight fluctuations such as spikes or drops.
 
-## Prototype for usability test
+## Final Prototype 
+https://playful-naiad-d04b31.netlify.app
+
+## Prototype for usability test V.1
 
 https://jazzy-kataifi-54f3ec.netlify.app/
 
