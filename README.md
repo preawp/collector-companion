@@ -1,6 +1,9 @@
+<img width="591" height="843" alt="Screenshot 2026-04-29 at 1 56 00 AM" src="https://github.com/user-attachments/assets/50fa19a9-5c14-4882-a722-cdf95db6050d" />
 # Collectible Companion
 
-A pastel minimal React dashboard for tracking collectible item prices over time.
+A minimal React dashboard for tracking collectible item prices over time.
+
+<img width="591" height="843" alt="Screenshot 2026-04-29 at 1 56 00 AM" src="https://github.com/user-attachments/assets/50fa19a9-5c14-4882-a722-cdf95db6050d" />
 
 ## Overview
 
